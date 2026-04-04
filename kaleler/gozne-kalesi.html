@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gozne Kalesi - Mersin Kaleleri Dijital Arsivi</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: #e0e0e0;
+        }
+        .card {
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .hero {
+            position: relative;
+            height: 260px;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%),
+                url('img/gozne-kalesi.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+        .hero-badge {
+            position: absolute; top: 16px; right: 16px;
+            background: rgba(241,196,15,0.85);
+            color: #fff; font-size: 11px; font-weight: 700;
+            padding: 5px 12px; border-radius: 20px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .hero h1 { font-size: 26px; font-weight: 800; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); line-height: 1.2; }
+        .hero .subtitle { font-size: 14px; color: rgba(255,255,255,0.8); margin-top: 4px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); margin: 16px; border-radius: 12px; overflow: hidden; }
+        .info-item { background: rgba(255,255,255,0.04); padding: 14px 12px; text-align: center; }
+        .info-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+        .info-item .value { font-size: 15px; font-weight: 600; color: #fff; }
+        .section { padding: 0 20px 18px; }
+        .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .section p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.78); }
+        .timeline { list-style: none; position: relative; padding-left: 20px; }
+        .timeline::before { content: ''; position: absolute; left: 6px; top: 4px; bottom: 4px; width: 2px; background: rgba(255,255,255,0.15); border-radius: 2px; }
+        .timeline li { position: relative; padding: 0 0 14px 16px; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.72); }
+        .timeline li::before { content: ''; position: absolute; left: -17px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #6c5ce7; border: 2px solid #302b63; }
+        .timeline li:last-child { padding-bottom: 0; }
+        .timeline .year { font-weight: 700; color: #a29bfe; }
+        .legend-box { margin: 0 20px 18px; padding: 14px 16px; background: rgba(241,196,15,0.08); border: 1px solid rgba(241,196,15,0.2); border-radius: 12px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.75); }
+        .legend-box strong { color: #f1c40f; }
+        .specs { margin: 0 20px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .spec { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; text-align: center; }
+        .spec .num { font-size: 22px; font-weight: 800; color: #6c5ce7; }
+        .spec .desc { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+        .buttons { display: flex; gap: 10px; padding: 0 20px 20px; }
+        .btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 10px; border-radius: 14px; text-decoration: none; font-size: 14px; font-weight: 700; transition: transform 0.15s; }
+        .btn:active { transform: scale(0.97); }
+        .btn-map { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; box-shadow: 0 4px 15px rgba(108,92,231,0.4); }
+        .btn-nav { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; }
+        .btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .footer { text-align: center; padding: 16px 20px 20px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .footer .project { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; }
+        .footer .project strong { color: rgba(255,255,255,0.55); }
+        .footer .source { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 6px; }
+        .footer .source a { color: rgba(255,255,255,0.3); text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="hero">
+        <span class="hero-badge">Kismen yikik</span>
+        <h1>Gozne Kalesi</h1>
+        <div class="subtitle">Toroslar, Mersin</div>
+    </div>
+    <div class="info-grid">
+        <div class="info-item">
+            <div class="label">Donem</div>
+            <div class="value">Kilikya Ermeni Kralligi</div>
+        </div>
+        <div class="info-item">
+            <div class="label">Yuzyil</div>
+            <div class="value">12-13. yy</div>
+        </div>
+        <div class="info-item">
+            <div class="label">Durum</div>
+            <div class="value">Kismen yikik</div>
+        </div>
+        <div class="info-item">
+            <div class="label">Ilce</div>
+            <div class="value">Toroslar</div>
+        </div>
+    </div>
+    <div class='specs'>
+        <div class="spec">
+            <div class="num">2</div>
+            <div class="desc">Ana yapi (dikdortgen + altigen)</div>
+        </div>
+        <div class="spec">
+            <div class="num">4</div>
+            <div class="desc">Burc (dogu yapisinda)</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">Tarihce</div>
+        <ul class="timeline">
+            <li><span class="year">12. yy</span> — Ermeni doneminde yol denetim kalesi olarak insa edildi</li>
+            <li><span class="year">13. yy</span> — Toros gecitlerini kontrol etti</li>
+            <li><span class="year">14. yy</span> — Ermeni Kralligi'nin cokmesiyle terk edildi</li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="section-title">Hakkinda</div>
+        <p>Gozne Kalesi, 1085 metre yukseklikte sarp kayaliklar uzerinde yer alan bir Ermeni donemi kalesidir. Iki ana yapidan olusur: dogudaki dikdortgen planli dort burclu yapi ve batidaki altigen formlu kule. Hic restorasyon gormemesine ragmen dogal konumu sayesinde ayakta kalmistir.</p>
+    </div>
+
+    <div class="buttons">
+        <a class="btn btn-map" href="https://www.google.com/maps?q=36.99583,34.57778" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Haritada Gor
+        </a>
+        <a class="btn btn-nav" href="https://www.google.com/maps/dir/?api=1&destination=36.99583,34.57778" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+            Yol Tarifi
+        </a>
+    </div>
+    <div class="footer">
+        <div class="project">
+            <strong>Kulturel Miras: Mersin Kaleleri QR Arsivi</strong><br>
+            TUBITAK 4006 Bilim Fuari — 2026
+        </div>
+        <div class="source">
+            Kaynak: <a href="https://www.kulturportali.gov.tr/turkiye/mersin/gezilecekyer/gozne-kalesi">Kultur Portali</a>
+            &middot; <a href="https://mersin.ktb.gov.tr/TR-73469/kaleler--hisarlar-ve-tabyalar.html">Mersin KTB</a>
+            <br>Fotograf: Wikimedia Commons, CC BY-SA
+        </div>
+    </div>
+</div>
+</body>
+</html>
